@@ -48,7 +48,7 @@ fun Dice(modifier: Modifier = Modifier) {
 
     ) {
         Text(
-            "請點擊圖片隨機丟骰子\n作者：Ebn")
+            "請點擊圖片隨機丟骰子\n作者：林淙瑨")
         Spacer(modifier = Modifier.height(20.dp))
         Image(
             painter = painterResource(id = R.drawable.dice0),
