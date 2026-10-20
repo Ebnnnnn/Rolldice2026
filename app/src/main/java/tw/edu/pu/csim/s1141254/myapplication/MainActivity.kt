@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,6 +17,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.runtime.getValue // 引入 getValue
+import androidx.compose.runtime.mutableStateOf // 引入 mutableStateOf
+import androidx.compose.runtime.remember // 引入 remember
+import androidx.compose.runtime.setValue // 引入 setValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,6 +44,18 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Dice(modifier: Modifier = Modifier) {
+    var diceNumber by remember { mutableStateOf(0) }
+    val diceImages = listOf(
+        R.drawable.dice0, // 索引 0
+        R.drawable.dice1, // 索引 1
+        R.drawable.dice2, // 索引 2
+        R.drawable.dice3, // 索引 3
+        R.drawable.dice4, // 索引 4
+        R.drawable.dice5, // 索引 5
+        R.drawable.dice6  // 索引 6
+    )
+
+
     Column(
         modifier = modifier.fillMaxSize(),
 
@@ -51,13 +68,14 @@ fun Dice(modifier: Modifier = Modifier) {
             "請點擊圖片隨機丟骰子\n作者：林淙瑨")
         Spacer(modifier = Modifier.height(20.dp))
         Image(
-            painter = painterResource(id = R.drawable.dice0),
-            contentDescription = "Dice"
+            painter = painterResource(id = diceImages[diceNumber]),
+            contentDescription = "Dice",
+            modifier = Modifier
+            .clickable {
+                diceNumber = (1..6).random()
+            }
 
         )
-
-
-
 
 
     }
